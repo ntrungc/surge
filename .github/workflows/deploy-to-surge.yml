@@ -1,22 +1,16 @@
-name: Deploy to Surge
-on:
-  push:
-    branches:
-      - main # Thay đổi thành tên nhánh mà bạn muốn theo dõi
+name: My workflow
+
+on: push
 
 jobs:
-  deploy:
+  my-job:
+    name: My job
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Install Surge
-      run: npm install -g surge
-
-    - name: Login to Surge
-      run: surge login -e ${{ secrets.SURGE_LOGIN_EMAIL }} -p ${{ secrets.SURGE_LOGIN_TOKEN }}
-
-    - name: Deploy to Surge
-      run: surge --project /ntxhn/surge --domain luutruso.surge.sh # Thay đổi đường dẫn và tên miền Surge của bạn
+      - name: Deploy to luutruso.surge.sh
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: 'luutruso.surge.sh'
+          project: '.'
+          login: ${{ secrets.surge_login }}
+          token: ${{ secrets.surge_token }}
