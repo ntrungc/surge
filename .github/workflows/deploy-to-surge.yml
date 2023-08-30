@@ -10,10 +10,13 @@ jobs:
     name: My job
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Đảm bảo bạn đã checkout mã nguồn từ nhánh main
+
       - name: Deploy to luutruso.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
           domain: 'luutruso.surge.sh'
-          project: '.'
+          project: './'  # Sử dụng dấu './' để chỉ định thư mục hiện tại (tất cả các tệp từ nhánh main sẽ được deploy)
           login: ${{ secrets.surge_login }}
           token: ${{ secrets.surge_token }}
