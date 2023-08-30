@@ -14,6 +14,6 @@ jobs:
         uses: dswistowski/surge-sh-action@v1
         with:
           domain: 'luutruso.surge.sh'
-          project: 'surge'
+          project: '.'
           login: ${{ secrets.surge_login }}
           token: ${{ secrets.surge_token }}
