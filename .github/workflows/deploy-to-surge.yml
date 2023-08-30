@@ -1,16 +1,14 @@
-name: My workflow
+name: Check Current Directory
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  my-job:
-    name: My job
+  check_directory:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to luutruso.surge.sh
-        uses: dswistowski/surge-sh-action@v1
-        with:
-          domain: 'luutruso.surge.sh'
-          project: 'ntxhn/surge'
-          login: ${{ secrets.surge_login }}
-          token: ${{ secrets.surge_token }}
+      - name: Check Current Directory
+        run: |
+          pwd
